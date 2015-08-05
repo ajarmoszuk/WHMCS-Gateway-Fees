@@ -7,8 +7,8 @@ function gateway_fees_config()
 	$configarray = array(
 		"name" => "Gateway Fees for WHMCS",
 		"description" => "Add fees based on the gateway being used.",
-		"version" => "1.0",
-		"author" => "Open Source"
+		"version" => "1.0.1",
+		"author" => "@delt360"
 	);
 	$result = select_query("tblpaymentgateways", "", "", "", "");
 	while ($data = mysql_fetch_array($result)) {
@@ -16,10 +16,10 @@ function gateway_fees_config()
 			"FriendlyName" => $data['gateway'],
 			"Type" => "text",
 			"Default" => "0.00",
-			"Description" => "$<!--"
+			"Description" => "$"
 		);
 		$configarray['fields']["fee_2_" . $data['gateway']] = array(
-			"FriendlyName" => "--!>",
+			"FriendlyName" => $data['gateway'],
 			"Type" => "text",
 			"Default" => "0.00",
 			"Description" => "%<br />"
